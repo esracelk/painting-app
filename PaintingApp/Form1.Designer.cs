@@ -93,7 +93,7 @@
             this.btn_save.Image = global::PaintingApp.Properties.Resources.icons8_save_32;
             this.btn_save.Location = new System.Drawing.Point(64, 424);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(40, 40);
+            this.btn_save.Size = new System.Drawing.Size(50, 50);
             this.btn_save.TabIndex = 13;
             this.btn_save.UseVisualStyleBackColor = false;
             // 
@@ -103,7 +103,7 @@
             this.btn_file.Image = global::PaintingApp.Properties.Resources.icons8_file_30;
             this.btn_file.Location = new System.Drawing.Point(3, 424);
             this.btn_file.Name = "btn_file";
-            this.btn_file.Size = new System.Drawing.Size(40, 40);
+            this.btn_file.Size = new System.Drawing.Size(55, 50);
             this.btn_file.TabIndex = 12;
             this.btn_file.UseVisualStyleBackColor = false;
             // 
