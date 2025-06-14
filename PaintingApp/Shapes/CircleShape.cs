@@ -10,6 +10,7 @@ namespace PaintingApp.Shapes
 {
     public class CircleShape : Shape
     {
+       
         public override void Draw (Graphics g)
         {
             Rectangle circle = GetCircle();

@@ -17,6 +17,9 @@ namespace PaintingApp.Shapes
         public abstract void Draw(Graphics g);
         public abstract bool Contains(Point p);
 
+       // public abstract string Serialize();
+
+      
         public virtual void Move(int dx, int dy)
         {
             StartPoint = new Point(StartPoint.X + dx, StartPoint.Y + dy);

@@ -6,6 +6,7 @@ namespace PaintingApp.Shapes
 {
     public class HexagonShape : Shape
     {
+      
         public override void Draw(Graphics g)
         {
             Point[] hexagon = GetHexagon();

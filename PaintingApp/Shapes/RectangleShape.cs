@@ -10,6 +10,7 @@ namespace PaintingApp.Shapes
 {
     public class RectangleShape : Shape
     {
+ 
         public override void Draw(Graphics g)
         {
             Rectangle rect = GetRectangle();

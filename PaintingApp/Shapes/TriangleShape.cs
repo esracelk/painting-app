@@ -10,6 +10,7 @@ namespace PaintingApp.Shapes
 {
     public class TriangleShape : Shape
     {
+   
         public override void Draw(Graphics g)
         {
             Point[] triangle = GetTriangle();

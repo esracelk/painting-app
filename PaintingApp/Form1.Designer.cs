@@ -2,9 +2,6 @@
 {
     partial class Form1
     {
-        /// <summary>
-        ///Gerekli tasarımcı değişkeni.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
@@ -96,6 +93,7 @@
             this.btn_save.Size = new System.Drawing.Size(50, 50);
             this.btn_save.TabIndex = 13;
             this.btn_save.UseVisualStyleBackColor = false;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_file
             // 
@@ -106,6 +104,7 @@
             this.btn_file.Size = new System.Drawing.Size(55, 50);
             this.btn_file.TabIndex = 12;
             this.btn_file.UseVisualStyleBackColor = false;
+            this.btn_file.Click += new System.EventHandler(this.btn_file_Click);
             // 
             // btn_deleteAll
             // 
@@ -116,6 +115,7 @@
             this.btn_deleteAll.Size = new System.Drawing.Size(50, 50);
             this.btn_deleteAll.TabIndex = 3;
             this.btn_deleteAll.UseVisualStyleBackColor = false;
+            this.btn_deleteAll.Click += new System.EventHandler(this.btn_deleteAll_Click);
             // 
             // btn_trash
             // 
@@ -126,6 +126,7 @@
             this.btn_trash.Size = new System.Drawing.Size(50, 50);
             this.btn_trash.TabIndex = 4;
             this.btn_trash.UseVisualStyleBackColor = false;
+            this.btn_trash.Click += new System.EventHandler(this.btn_trash_Click);
             // 
             // btn_select
             // 
@@ -136,6 +137,7 @@
             this.btn_select.Size = new System.Drawing.Size(50, 50);
             this.btn_select.TabIndex = 2;
             this.btn_select.UseVisualStyleBackColor = false;
+            this.btn_select.Click += new System.EventHandler(this.btn_select_Click);
             // 
             // btn_white
             // 
@@ -145,6 +147,7 @@
             this.btn_white.Size = new System.Drawing.Size(35, 33);
             this.btn_white.TabIndex = 3;
             this.btn_white.UseVisualStyleBackColor = false;
+            this.btn_white.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_purple
             // 
@@ -154,6 +157,7 @@
             this.btn_purple.Size = new System.Drawing.Size(35, 33);
             this.btn_purple.TabIndex = 4;
             this.btn_purple.UseVisualStyleBackColor = false;
+            this.btn_purple.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_brown
             // 
@@ -163,6 +167,7 @@
             this.btn_brown.Size = new System.Drawing.Size(35, 33);
             this.btn_brown.TabIndex = 5;
             this.btn_brown.UseVisualStyleBackColor = false;
+            this.btn_brown.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_yellow
             // 
@@ -172,6 +177,7 @@
             this.btn_yellow.Size = new System.Drawing.Size(35, 33);
             this.btn_yellow.TabIndex = 6;
             this.btn_yellow.UseVisualStyleBackColor = false;
+            this.btn_yellow.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_black
             // 
@@ -181,6 +187,7 @@
             this.btn_black.Size = new System.Drawing.Size(35, 33);
             this.btn_black.TabIndex = 7;
             this.btn_black.UseVisualStyleBackColor = false;
+            this.btn_black.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_orange
             // 
@@ -190,6 +197,7 @@
             this.btn_orange.Size = new System.Drawing.Size(35, 33);
             this.btn_orange.TabIndex = 8;
             this.btn_orange.UseVisualStyleBackColor = false;
+            this.btn_orange.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_green
             // 
@@ -199,6 +207,7 @@
             this.btn_green.Size = new System.Drawing.Size(35, 33);
             this.btn_green.TabIndex = 9;
             this.btn_green.UseVisualStyleBackColor = false;
+            this.btn_green.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_blue
             // 
@@ -208,6 +217,7 @@
             this.btn_blue.Size = new System.Drawing.Size(35, 33);
             this.btn_blue.TabIndex = 10;
             this.btn_blue.UseVisualStyleBackColor = false;
+            this.btn_blue.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // btn_red
             // 
@@ -217,6 +227,7 @@
             this.btn_red.Size = new System.Drawing.Size(35, 33);
             this.btn_red.TabIndex = 11;
             this.btn_red.UseVisualStyleBackColor = false;
+            this.btn_red.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // textBox4
             // 
@@ -280,7 +291,9 @@
             this.btn_circle.Name = "btn_circle";
             this.btn_circle.Size = new System.Drawing.Size(60, 50);
             this.btn_circle.TabIndex = 5;
+            this.btn_circle.Tag = "Circle";
             this.btn_circle.UseVisualStyleBackColor = false;
+            this.btn_circle.Click += new System.EventHandler(this.ShapeButton_Click);
             // 
             // btn_triangle
             // 
@@ -292,7 +305,9 @@
             this.btn_triangle.Name = "btn_triangle";
             this.btn_triangle.Size = new System.Drawing.Size(60, 50);
             this.btn_triangle.TabIndex = 4;
+            this.btn_triangle.Tag = "Triangle";
             this.btn_triangle.UseVisualStyleBackColor = false;
+            this.btn_triangle.Click += new System.EventHandler(this.ShapeButton_Click);
             // 
             // btn_hexagon
             // 
@@ -304,7 +319,9 @@
             this.btn_hexagon.Name = "btn_hexagon";
             this.btn_hexagon.Size = new System.Drawing.Size(60, 50);
             this.btn_hexagon.TabIndex = 3;
+            this.btn_hexagon.Tag = "Hexagon";
             this.btn_hexagon.UseVisualStyleBackColor = false;
+            this.btn_hexagon.Click += new System.EventHandler(this.ShapeButton_Click);
             // 
             // btn_rectangle
             // 
@@ -317,7 +334,9 @@
             this.btn_rectangle.Name = "btn_rectangle";
             this.btn_rectangle.Size = new System.Drawing.Size(60, 50);
             this.btn_rectangle.TabIndex = 2;
+            this.btn_rectangle.Tag = "Rectangle";
             this.btn_rectangle.UseVisualStyleBackColor = false;
+            this.btn_rectangle.Click += new System.EventHandler(this.ShapeButton_Click);
             // 
             // panelDraw
             // 
@@ -327,6 +346,10 @@
             this.panelDraw.Size = new System.Drawing.Size(862, 508);
             this.panelDraw.TabIndex = 0;
             this.panelDraw.TabStop = false;
+            this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
+            this.panelDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseDown);
+            this.panelDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseMove);
+            this.panelDraw.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseUp);
             // 
             // Form1
             // 
