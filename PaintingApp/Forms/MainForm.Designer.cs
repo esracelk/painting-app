@@ -1,6 +1,6 @@
-﻿namespace PaintingApp
+﻿namespace PaintingApp.Forms
 {
-    partial class Form1
+    partial class MainForm
     {
         private System.ComponentModel.IContainer components = null;
 

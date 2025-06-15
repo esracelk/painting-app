@@ -1,4 +1,5 @@
-﻿using PaintingApp.Helpers;
+﻿using PaintingApp.Forms;
+using PaintingApp.Helpers;
 using PaintingApp.Shapes;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PaintingApp
+namespace PaintingApp.Forms
 {
-    public partial class Form1: Form
+    public partial class MainForm: Form
     {
         List<Shape> shapes = new List<Shape>();
         Shape currentShape = null;
@@ -28,7 +29,7 @@ namespace PaintingApp
         bool isDragging = false; //sürükleme islemi yapmak icin
         bool isMoveMode = false; 
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
