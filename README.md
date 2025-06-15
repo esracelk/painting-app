@@ -38,7 +38,6 @@ A feature-rich Windows Forms drawing application built in C# that demonstrates o
 - **Move**: Drag a selected shape to move it around the canvas
 - **Delete**: 
   - Select a shape and press `Delete` key or
-  - Use the "Delete Selected" button or
   - Use "Clear All" to remove everything
 
 ### File Operations
