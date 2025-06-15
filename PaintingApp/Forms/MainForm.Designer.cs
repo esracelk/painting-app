@@ -3,11 +3,6 @@
     partial class MainForm
     {
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        ///Kullanılan tüm kaynakları temizleyin.
-        /// </summary>
-        ///<param name="disposing">yönetilen kaynaklar dispose edilmeliyse doğru; aksi halde yanlış.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -346,20 +341,19 @@
             this.panelDraw.Size = new System.Drawing.Size(862, 508);
             this.panelDraw.TabIndex = 0;
             this.panelDraw.TabStop = false;
-            this.panelDraw.Click += new System.EventHandler(this.panelDraw_Click);
             this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
             this.panelDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseDown);
             this.panelDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseMove);
             this.panelDraw.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseUp);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(862, 508);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelDraw);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

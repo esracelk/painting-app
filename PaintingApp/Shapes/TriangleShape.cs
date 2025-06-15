@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PaintingApp.Shapes
 {
     public class TriangleShape : Shape
     {
-   
         public override void Draw(Graphics g)
         {
             Point[] triangle = GetTriangle();
@@ -36,7 +30,6 @@ namespace PaintingApp.Shapes
                 return path.IsVisible(p);
             }
         }
-
         private Point[] GetTriangle()
         {
             Point top = new Point((StartPoint.X + EndPoint.X) / 2, StartPoint.Y);

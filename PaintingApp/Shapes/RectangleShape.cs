@@ -10,7 +10,6 @@ namespace PaintingApp.Shapes
 {
     public class RectangleShape : Shape
     {
- 
         public override void Draw(Graphics g)
         {
             Rectangle rect = GetRectangle();
@@ -36,10 +35,10 @@ namespace PaintingApp.Shapes
         private Rectangle GetRectangle()
         {
             return new Rectangle(
-                Math.Min(StartPoint.X, EndPoint.X),
-                Math.Min(StartPoint.Y, EndPoint.Y),
-                Math.Abs(EndPoint.X - StartPoint.X),
-                Math.Abs(EndPoint.Y - StartPoint.Y)
+                 Math.Min(StartPoint.X, EndPoint.X),
+                 Math.Min(StartPoint.Y, EndPoint.Y),
+                 Math.Abs(EndPoint.X - StartPoint.X),
+                 Math.Abs(EndPoint.Y - StartPoint.Y)
             );
         }
     }

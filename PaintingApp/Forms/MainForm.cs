@@ -1,15 +1,8 @@
-﻿using PaintingApp.Forms;
-using PaintingApp.Helpers;
+﻿using PaintingApp.Helpers;
 using PaintingApp.Shapes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PaintingApp.Forms
@@ -26,7 +19,7 @@ namespace PaintingApp.Forms
         bool isSelecting = false;
 
         Point lastMousePosition;
-        bool isDragging = false; //sürükleme islemi yapmak icin
+        bool isDragging = false; 
         bool isMoveMode = false; 
 
         public MainForm()
@@ -39,10 +32,10 @@ namespace PaintingApp.Forms
         {
             isMoveMode = !isMoveMode;
 
-            //butuon aktif mi??
+            
             btn_select.BackColor = isMoveMode ? Color.LightGray : SystemColors.Control;
 
-            //mod degisirse secili seklikapat
+            
             selectedShape = null;
             isDragging = false;
             isDrawing = false;
@@ -90,10 +83,8 @@ namespace PaintingApp.Forms
 
                     if (openDialog.ShowDialog() == DialogResult.OK)
                     {
-                        //dosyayi yukle
                         shapes = ShapeSerializer.Load(openDialog.FileName);
 
-                        // formu yeniden ciz
                         panelDraw.Invalidate();
                         panelDraw.Refresh();
 
@@ -114,7 +105,6 @@ namespace PaintingApp.Forms
         {
             try
             {
-                //cizim yoksa uyar
                 if (shapes == null || shapes.Count == 0)
                 {
                     MessageBox.Show("Kaydedilecek şekil bulunamadı!",
@@ -128,16 +118,15 @@ namespace PaintingApp.Forms
                 {
                   
                     saveDialog.Filter = "Paint Files (*.paint)|*.paint|Text Files (*.txt)|*.txt";
-                    saveDialog.FilterIndex = 1; // default olarak paint ayarla
+                    saveDialog.FilterIndex = 1;
                     saveDialog.DefaultExt = "paint";
                     saveDialog.AddExtension = true;
                     saveDialog.Title = "Çizimi Kaydet";
-                    saveDialog.FileName = "MyDrawing"; // default dosya adi
+                    saveDialog.FileName = "MyDrawing";
 
                     
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
-                        // Dosyayı kaydet
                         ShapeSerializer.Save(shapes, saveDialog.FileName);
 
                         MessageBox.Show($"Çizim başarıyla kaydedildi!\nDosya: {saveDialog.FileName}",
@@ -196,7 +185,6 @@ namespace PaintingApp.Forms
         private void panelDraw_MouseDown(object sender, MouseEventArgs e)
         {
 
-            // tasima modu aktifse sekil sec ve surukle
             if (isMoveMode)
             {
 
@@ -209,7 +197,7 @@ namespace PaintingApp.Forms
                 selectedShape = null;
                 isDragging = false;
 
-                for (int i = shapes.Count - 1; i >= 0; i--) //ustteki sekilleri önce kontrol etsin diye sondan basa dogru kontrol ediyorum.(stack gibi davranıyor)
+                for (int i = shapes.Count - 1; i >= 0; i--)
                 {
                     if (shapes[i].Contains(e.Location))
                     {
@@ -222,10 +210,9 @@ namespace PaintingApp.Forms
                 }
 
                 panelDraw.Invalidate();
-                return; // tasima modu aktifse cizim yapma
+                return;
             }
 
-            //taşıma modu kapalı sadece çizim yap
             if (!isMoveMode)
             {
                 isDrawing = true;
@@ -246,7 +233,6 @@ namespace PaintingApp.Forms
 
         private void panelDraw_MouseMove(object sender, MouseEventArgs e)
         {
-            // sekli surukleme islemi burda yapılır
             if (isMoveMode && isDragging && selectedShape != null)
             {
                 int dx = e.X - lastMousePosition.X;
@@ -258,7 +244,6 @@ namespace PaintingApp.Forms
                 return;
             }
 
-            // cizim modu aktif
             if (!isMoveMode && isDrawing && currentShape != null)
             {
                 currentShape.EndPoint = e.Location;
@@ -268,14 +253,12 @@ namespace PaintingApp.Forms
 
         private void panelDraw_MouseUp(object sender, MouseEventArgs e)
         {
-            // tasımayı dudur
             if (isMoveMode && isDragging)
             {
                 isDragging = false;
                 return;
             }
 
-            // cizimi durdur
             if (!isMoveMode && isDrawing && currentShape != null)
             {
                 currentShape.EndPoint = e.Location;
@@ -295,11 +278,6 @@ namespace PaintingApp.Forms
 
             if (!isMoveMode && isDrawing && currentShape != null)
                 currentShape.Draw(g);
-        }
-
-        private void panelDraw_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

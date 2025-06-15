@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PaintingApp.Shapes
 {
@@ -38,8 +34,15 @@ namespace PaintingApp.Shapes
             int centerX = StartPoint.X;
             int centerY = StartPoint.Y;
 
-            int radius = (int)Math.Sqrt(Math.Pow(EndPoint.X - StartPoint.X, 2) + Math.Pow(EndPoint.Y - StartPoint.Y, 2));
-            return new Rectangle(centerX - radius, centerY - radius, radius * 2, radius * 2);
+            int radius = (int)Math.Sqrt(
+                     Math.Pow(EndPoint.X - StartPoint.X, 2)+
+                     Math.Pow(EndPoint.Y - StartPoint.Y, 2));
+
+            return new Rectangle(
+                centerX - radius, 
+                centerY - radius, 
+                radius * 2, radius * 2
+            );
         }
     }
 }

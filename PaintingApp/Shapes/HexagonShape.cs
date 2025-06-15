@@ -6,7 +6,6 @@ namespace PaintingApp.Shapes
 {
     public class HexagonShape : Shape
     {
-      
         public override void Draw(Graphics g)
         {
             Point[] hexagon = GetHexagon();
@@ -37,7 +36,9 @@ namespace PaintingApp.Shapes
         {
             int centerX = (StartPoint.X + EndPoint.X) / 2;
             int centerY = (StartPoint.Y + EndPoint.Y) / 2;
-            int radius = Math.Min(Math.Abs(EndPoint.X - StartPoint.X), Math.Abs(EndPoint.Y - StartPoint.Y)) / 2;
+            int radius = Math.Min(
+                         Math.Abs(EndPoint.X - StartPoint.X), 
+                         Math.Abs(EndPoint.Y - StartPoint.Y)) / 2;
 
             Point[] points = new Point[6];
             for (int i = 0; i < 6; i++)

@@ -1,12 +1,8 @@
 ﻿using PaintingApp.Shapes;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PaintingApp.Helpers
 {
@@ -14,14 +10,13 @@ namespace PaintingApp.Helpers
     {
         public static void Save(List<Shape> shapes, string filePath)
         {
-            var lines = shapes.Select(s => s.Serialize()); //her sekli stringe cevir
-            File.WriteAllLines(filePath, lines); //hepsini dosyaya kaydet
+            var lines = shapes.Select(s => s.Serialize()); 
+            File.WriteAllLines(filePath, lines);
         }
 
         public static List<Shape> Load(string filePath)
         {
 
-            //bos liste olustur ve doyadan okuduklarını isle
             var shapes = new List<Shape>();
             string[] lines = File.ReadAllLines(filePath);
 
@@ -39,7 +34,6 @@ namespace PaintingApp.Helpers
 
                 Shape shape = null;
 
-                //sekil turune dore nesne olustur
                 if (type == "RectangleShape")
                 {
                     shape = new RectangleShape();
@@ -62,10 +56,9 @@ namespace PaintingApp.Helpers
                     shape.StartPoint = new Point(x1, y1);
                     shape.EndPoint = new Point(x2, y2);
                     shape.Color = color;
-                    shapes.Add(shape); //listeye ekle
+                    shapes.Add(shape);
                 }
             }
-
             return shapes;
         }
     }
