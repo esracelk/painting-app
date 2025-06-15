@@ -27,7 +27,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_save = new System.Windows.Forms.Button();
-            this.btn_file = new System.Windows.Forms.Button();
+            this.btn_upload = new System.Windows.Forms.Button();
             this.btn_deleteAll = new System.Windows.Forms.Button();
             this.btn_trash = new System.Windows.Forms.Button();
             this.btn_select = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panel1.Controls.Add(this.btn_save);
-            this.panel1.Controls.Add(this.btn_file);
+            this.panel1.Controls.Add(this.btn_upload);
             this.panel1.Controls.Add(this.btn_deleteAll);
             this.panel1.Controls.Add(this.btn_trash);
             this.panel1.Controls.Add(this.btn_select);
@@ -95,16 +95,16 @@
             this.btn_save.UseVisualStyleBackColor = false;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // btn_file
+            // btn_upload
             // 
-            this.btn_file.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btn_file.Image = global::PaintingApp.Properties.Resources.icons8_file_30;
-            this.btn_file.Location = new System.Drawing.Point(3, 424);
-            this.btn_file.Name = "btn_file";
-            this.btn_file.Size = new System.Drawing.Size(55, 50);
-            this.btn_file.TabIndex = 12;
-            this.btn_file.UseVisualStyleBackColor = false;
-            this.btn_file.Click += new System.EventHandler(this.btn_file_Click);
+            this.btn_upload.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btn_upload.Image = global::PaintingApp.Properties.Resources.icons8_file_30;
+            this.btn_upload.Location = new System.Drawing.Point(3, 424);
+            this.btn_upload.Name = "btn_upload";
+            this.btn_upload.Size = new System.Drawing.Size(55, 50);
+            this.btn_upload.TabIndex = 12;
+            this.btn_upload.UseVisualStyleBackColor = false;
+            this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click);
             // 
             // btn_deleteAll
             // 
@@ -346,6 +346,7 @@
             this.panelDraw.Size = new System.Drawing.Size(862, 508);
             this.panelDraw.TabIndex = 0;
             this.panelDraw.TabStop = false;
+            this.panelDraw.Click += new System.EventHandler(this.panelDraw_Click);
             this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
             this.panelDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseDown);
             this.panelDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseMove);
@@ -392,7 +393,7 @@
         private System.Windows.Forms.Button btn_deleteAll;
         private System.Windows.Forms.Button btn_trash;
         private System.Windows.Forms.Button btn_save;
-        private System.Windows.Forms.Button btn_file;
+        private System.Windows.Forms.Button btn_upload;
     }
 }
 

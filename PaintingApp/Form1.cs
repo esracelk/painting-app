@@ -1,4 +1,5 @@
-﻿using PaintingApp.Shapes;
+﻿using PaintingApp.Helpers;
+using PaintingApp.Shapes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,140 +72,86 @@ namespace PaintingApp
             panelDraw.Invalidate();
         }
 
-     
-
-        //private void btn_file_Click(object sender, EventArgs e)
-        //{
-        //    OpenFileDialog openFileDialog = new OpenFileDialog();
-        //    openFileDialog.Filter = "Jpeg Image|*.jpg|Bitmap Image|*.bmp|All Files|*.*";
-        //    openFileDialog.Title = "Open an image file";
-
-        //    if (openFileDialog.ShowDialog() == DialogResult.OK)
-        //    {
-        //        try
-        //        {
-        //            // Seçilen resmi Image olarak yükle
-        //            Image img = Image.FromFile(openFileDialog.FileName);
-
-        //            // board kontrolündeki resmi güncelle
-        //            panelDraw.Image = new Bitmap(img);
-
-        //            // Panel ya da board'u tekrar çiz
-        //            panelDraw.Invalidate();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Dosya açılamadı: " + ex.Message);
-        //        }
-        //    }
-        //}
-
-        //private void btn_save_Click(object sender, EventArgs e)
-        //{
-        //    SaveFileDialog sdf = new SaveFileDialog();
-        //    sdf.Filter = "Png Image|*.Png|Bitmap Image| *.bmp";
-        //    sdf.Title = "Save an image file";
-        //    sdf.ShowDialog();
-
-        //    if (sdf.FileName != " ")
-        //    {
-        //        System.IO.FileStream fs = (System.IO.FileStream)sdf.OpenFile();
-        //        switch (sdf.FilterIndex)
-        //        {
-        //            case 1:
-        //                this.panelDraw.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
-        //                break;
-        //            case 2:
-        //                this.panelDraw.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Bmp);
-        //                break;
-        //        }
-
-        //        fs.Close();
-        //    }
 
 
-        //    MessageBox.Show("Drawing saved succesfully!", "Save",
-        //                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //}
-
-        private void btn_file_Click(object sender, EventArgs e)
+        private void btn_upload_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Text Files|*.txt";
-
-            if (ofd.ShowDialog() == DialogResult.OK)
+            try
             {
-                shapes.Clear(); // Mevcut çizimleri temizle
-
-                string[] lines = File.ReadAllLines(ofd.FileName);
-
-                foreach (string line in lines)
+                using (OpenFileDialog openDialog = new OpenFileDialog())
                 {
-                    string[] parts = line.Split(',');
-                    if (parts.Length == 6)
+                    openDialog.Filter = "Paint Files (*.paint)|*.paint|Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+                    openDialog.FilterIndex = 1; 
+                    openDialog.DefaultExt = "paint";
+                    openDialog.Title = "Çizim Dosyası Seç";
+                    openDialog.CheckFileExists = true;
+                    openDialog.CheckPathExists = true;
+
+                    if (openDialog.ShowDialog() == DialogResult.OK)
                     {
-                        string type = parts[0];
-                        int x1 = int.Parse(parts[1]);
-                        int y1 = int.Parse(parts[2]);
-                        int x2 = int.Parse(parts[3]);
-                        int y2 = int.Parse(parts[4]);
-                        Color color = Color.FromArgb(int.Parse(parts[5]));
+                        //dosyayi yukle
+                        shapes = ShapeSerializer.Load(openDialog.FileName);
 
-                        Shape shape = null;
+                        // formu yeniden ciz
+                        panelDraw.Invalidate();
+                        panelDraw.Refresh();
 
-                        switch (type)
-                        {
-                            case "RectangleShape":
-                                shape = new RectangleShape();
-                                break;
-                            case "CircleShape":
-                                shape = new CircleShape();
-                                break;
-                            case "TriangleShape":
-                                shape = new TriangleShape();
-                                break;
-                            case "HexagonShape":
-                                shape = new HexagonShape();
-                                break;
-                        }
-
-                        if (shape != null)
-                        {
-                            shape.StartPoint = new Point(x1, y1);
-                            shape.EndPoint = new Point(x2, y2);
-                            shape.Color = color;
-                            shapes.Add(shape);
-                        }
                     }
                 }
-
-                panelDraw.Invalidate(); // Paneli yeniden çiz
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Dosya yüklenirken hata oluştu:\n{ex.Message}",
+                              "Yükleme Hatası",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
             }
         }
+
 
         private void btn_save_Click(object sender, EventArgs e)
         {
             try
             {
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Filter = "Text Dosyası|*.txt|Tüm Dosyalar|*.*";
-                saveDialog.DefaultExt = "txt";
-                saveDialog.Title = "Çizimi Kaydet";
-
-                if (saveDialog.ShowDialog() == DialogResult.OK)
+                //cizim yoksa uyar
+                if (shapes == null || shapes.Count == 0)
                 {
-                    var lines = shapes.Select(s => s.Serialize()).ToList();
-                    File.WriteAllLines(saveDialog.FileName, lines, Encoding.UTF8);
+                    MessageBox.Show("Kaydedilecek şekil bulunamadı!",
+                                  "Uyarı",
+                                  MessageBoxButtons.OK,
+                                  MessageBoxIcon.Warning);
+                    return;
+                }
 
-                    MessageBox.Show("Dosya başarıyla kaydedildi!", "Başarılı",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                  
+                    saveDialog.Filter = "Paint Files (*.paint)|*.paint|Text Files (*.txt)|*.txt";
+                    saveDialog.FilterIndex = 1; // default olarak paint ayarla
+                    saveDialog.DefaultExt = "paint";
+                    saveDialog.AddExtension = true;
+                    saveDialog.Title = "Çizimi Kaydet";
+                    saveDialog.FileName = "MyDrawing"; // default dosya adi
+
+                    
+                    if (saveDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Dosyayı kaydet
+                        ShapeSerializer.Save(shapes, saveDialog.FileName);
+
+                        MessageBox.Show($"Çizim başarıyla kaydedildi!\nDosya: {saveDialog.FileName}",
+                                      "Kaydetme Başarılı",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Kaydetme hatası: {ex.Message}", "Hata",
-                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Dosya kaydedilirken hata oluştu:\n{ex.Message}",
+                              "Kaydetme Hatası",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
             }
         }
 
@@ -347,6 +294,11 @@ namespace PaintingApp
 
             if (!isMoveMode && isDrawing && currentShape != null)
                 currentShape.Draw(g);
+        }
+
+        private void panelDraw_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
